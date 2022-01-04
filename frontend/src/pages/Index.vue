@@ -1,35 +1,40 @@
 <template>
-  <q-page class="row items-center justify-evenly"> </q-page>
+  <q-page class="row items-center justify-evenly">
+    <q-btn @click="enviarMensagem">enviar mensagem</q-btn>
+  </q-page>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { useQuasar } from "quasar";
+import { defineComponent } from "vue";
 
+let self: any;
 export default defineComponent({
   name: "PageIndex",
 
   setup() {
-    const $q = useQuasar();
+    const escutaMensagem = () => {
+      self.$options.sockets.onmessage = (event: any) => {
+        const obj = JSON.parse(event.data);
 
-    return {};
+        console.log(obj);
+      };
+    };
+
+    const enviarMensagem = () => {
+      setTimeout(() => {
+        self.$socket.sendObj({
+          mensagem: "enviando dados do front",
+          broadcast: true,
+        });
+      }, 1000);
+    };
+
+    return { escutaMensagem, enviarMensagem };
   },
 
   created() {
-    this.$options.sockets.onmessage = (event: any) => {
-      const obj = event.data; //JSON.parse(event.data);
-
-      console.log(obj);
-    };
-  },
-
-  mounted() {
-    setTimeout(() => {
-      this.$socket.sendObj({
-        dados: "enviando dados do front",
-        broadcast: true,
-      });
-    }, 1000);
+    self = this;
+    this.escutaMensagem();
   },
 });
 </script>

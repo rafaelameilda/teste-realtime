@@ -7,13 +7,13 @@ interface IParametersOnMessageSocket {
 }
 
 const onMessage = ({ data, ws, wss }: IParametersOnMessageSocket): void => {
-  const { broadcast, dados } = JSON.parse(data.toString());
+  const dados = JSON.parse(data.toString());
   wss.clients.forEach((client) => {
-    if (broadcast) {
+    if (dados.broadcast) {
       if (client !== ws) {
         client.send(JSON.stringify(dados));
       } else {
-        ws.send(`voce enviou para os outros`);
+        ws.send(JSON.stringify({ mensagem: `voce enviou para os outros` }));
       }
     }
   });
