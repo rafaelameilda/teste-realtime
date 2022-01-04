@@ -3,12 +3,8 @@ require("dotenv/config");
 module.exports = [
   {
     name: "default",
-    type: "",
-    port: 1521,
-    host: "",
-    username: "",
-    password: "",
-    sid: "wintp",
+    type: "sqlite",
+    database: "./src/database/database.sqlite",
     entities: ["./src/modules/**/entities/*.ts"],
   },
 ];

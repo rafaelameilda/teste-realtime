@@ -21,12 +21,10 @@ export default defineComponent({
     };
 
     const enviarMensagem = () => {
-      setTimeout(() => {
-        self.$socket.sendObj({
-          mensagem: "enviando dados do front",
-          broadcast: true,
-        });
-      }, 1000);
+      self.$socket.sendObj({
+        mensagem: "enviando dados -> recebeu",
+        broadcast: true,
+      });
     };
 
     return { escutaMensagem, enviarMensagem };

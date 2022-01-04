@@ -11,7 +11,8 @@
       "@modules/*": ["modules/*"],
       "@errors/*": ["errors/*"],
       "@shared/*": ["shared/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@database/*": ["database/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,
