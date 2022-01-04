@@ -17,7 +17,7 @@ import { router } from "./routes";
 
 import "@shared/container";
 
-createConnections();
+// createConnections();
 
 const app = express();
 
