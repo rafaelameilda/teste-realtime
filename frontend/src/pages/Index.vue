@@ -27,6 +27,7 @@ export default defineComponent({
     setTimeout(() => {
       this.$socket.sendObj({
         dados: "enviando dados do front",
+        broadcast: true,
       });
     }, 1000);
   },
